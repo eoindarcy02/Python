@@ -9,9 +9,9 @@ GARBAGE_CHARS =  '~!@#$%^&*()_+-={}[]|;:,.<>?/'
 # Load the WORDS list from the text file
 with open('sevenletterwords.txt') as wordListFile:
     WORDS = wordListFile.readlines()
-    for i in range(len(WORDS)):
-        # Convert each word to uppercase and remove the trailing newline
-        WORDS[i] = WORDS[i].strips().upper()
+for i in range(len(WORDS)):
+    # Convert each word to uppercase and remove the trailing newline
+    WORDS[i] = WORDS[i].strip().upper()
 
 def main():
     input('Press Enter to Begin..')
@@ -39,7 +39,7 @@ def getWords():
     # Find two more words; these have zero matching letters
     # We use "< 3" because the secret password is already in words
     while len(words) < 3:
-        randomWord = getOneWordException(words)
+        randomWord = getOneWordExcept(words)
         if numMatchingLetters(secretPassword, randomWord) == 0:
             words.append(randomWord)
 
@@ -119,12 +119,12 @@ def getComputerMemoryString(words):
             rightHalf = (rightHalf[:insertionIndex] + words[nextWord] + rightHalf[insertionIndex + 7:])
             nextWord += 1  # Update the Word to put in the Half Line
 
-        computerMemory.append('Ox' + hex(memoryAddress)[2:].zfill(4) + ' ' + leftHalf + ' ' + 'Ox' + hex(memoryAddress + (16*16))[2:].zfill(4) + ' ' + rightHalf)
+        computerMemory.append('Ox' + hex(memoryAddress)[2:].zfill(4) + '  ' + leftHalf + '  ' + 'Ox' + hex(memoryAddress + (16*16))[2:].zfill(4) + '  ' + rightHalf)
         memoryAddress += 16 # Jump from, say, 0xe680 to 0xe690
 
         # Each String in Computer Memory list is joined into one large
         # String to Return
-        return '\n'.join(computerMemory)
+    return '\n'.join(computerMemory)
 
 def askForPlayerGuess(words, tries):
     while True:
