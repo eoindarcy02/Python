@@ -14,7 +14,7 @@ input('Press ENTER to Begin.....')
 while True:
     print()
     print("It's High Noon..")
-    time.sleep(random.randint(20, 50) / 10.0)
+    time.sleep(random.randint(20, 50) / 10.0)  # Will Sleep for Random Seconds Between 20 & 50 Which is then Divided by 10 for ms Conversion
     print('DRAW!')
     drawTime = time.time()
     input()  # This Function call Doesn't return Until ENTER is Pressed
@@ -22,12 +22,14 @@ while True:
 
     # IF/ELSE Statements for Input in Before/Loss/Win Case
     if timeElapsed < 0.01:
-        # Error Handling for IF Player Presses ENTER Before DRAW! Appears
+        # Error Handling for IF Player Presses ENTER BEFORE DRAW! Appears
         print('You Drew Before "DRAW!" Appeared! You Lose')
     elif timeElapsed > 0.3:
+        # ELIF Statement for IF Player Presses ENTER AFTER 0.3 Seconds
         timeElapsed = round(timeElapsed, 4)
         print('You Took', timeElapsed, 'Seconds to Draw... Too Slow!')
     else:
+        # ELSE Statement for IF Player Presses ENTER BEFORE 0.3 Seconds
         timeElapsed = round(timeElapsed, 4)
         print('You Took ', timeElapsed, 'Seconds to Draw!... You Win!')
 
@@ -36,4 +38,3 @@ while True:
     if response == 'QUIT':
         print('Thanks for Playing!')
         sys.exit()
-
